@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1748723726.8738 "c:/Users/Bagus Alifah Hasyim/Documents/Computational Engineering RUB/04 - 02 Computational Plasticity/Assignment1/report_File/main.tex" "main.pdf" "main" 1748723727.83288 0
+["pdflatex"] 1748980111.80944 "c:/Users/Bagus Alifah Hasyim/Documents/Project/assignment1-plasticity/computational-plasticity/main.tex" "main.pdf" "main" 1748980112.5521 0
   "C:/Users/Bagus Alifah Hasyim/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1748253059 83609 ebbc432e6cbbb238d39535255db2c8bd ""
   "C:/Users/Bagus Alifah Hasyim/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1748250225 14064 854914f65c8453ac3c66784526470fa3 ""
   "C:/Users/Bagus Alifah Hasyim/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1748199441 13166137 27c084a345814fe9230bd168a7204098 ""
@@ -56,11 +56,11 @@
   "C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/tex/latex/titlesec/titlesec.sty" 1736608268 48766 87a17a4ef312a39cd43896e34a679a56 ""
   "C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/tex/latex/tools/indentfirst.sty" 1730400552 1618 d81d7e8646081fd4049b99a8cd8a91df ""
   "C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/tex/latex/tools/longtable.sty" 1730400552 15900 3cb191e576c7a313634d2813c55d4bf1 ""
-  "c:/Users/Bagus Alifah Hasyim/Documents/Computational Engineering RUB/04 - 02 Computational Plasticity/Assignment1/report_File/main.tex" 1748723725 8339 17a7d77e8d905a5021c741b66b7988ce ""
-  "images/TaskQ1.png" 1748254971 41769 04dc2699aab2a97eacf15502c0aa08d2 ""
-  "images/TaskQ2.png" 1748255363 71665 de098de9ee40df5233866b278294a2fb ""
-  "main.aux" 1748723727 1385 c84daccde1630333276600d564ed2ab0 "pdflatex"
-  "main.tex" 1748723725 8339 17a7d77e8d905a5021c741b66b7988ce ""
+  "c:/Users/Bagus Alifah Hasyim/Documents/Project/assignment1-plasticity/computational-plasticity/main.tex" 1748980110 9449 7187f63d2f0c18ab595f344fa7b3d7ba ""
+  "images/TaskQ1.png" 1748975587 41769 04dc2699aab2a97eacf15502c0aa08d2 ""
+  "images/TaskQ2.png" 1748975587 71665 de098de9ee40df5233866b278294a2fb ""
+  "main.aux" 1748980112 2135 880df28869ac7e76d042faade51be398 "pdflatex"
+  "main.tex" 1748980110 9449 7187f63d2f0c18ab595f344fa7b3d7ba ""
   (generated)
   "main.aux"
   "main.log"

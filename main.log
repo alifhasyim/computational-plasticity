@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.25)  31 MAY 2025 22:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.25)  3 JUN 2025 21:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Bagus Alifah Hasyim/Documents/Computational Engineering RUB/04 - 02 Computational Plasticity/Assignment1/report_File/main.tex"
-(c:/Users/Bagus Alifah Hasyim/Documents/Computational Engineering RUB/04 - 02 Computational Plasticity/Assignment1/report_File/main.tex
+**"c:/Users/Bagus Alifah Hasyim/Documents/Project/assignment1-plasticity/computational-plasticity/main.tex"
+(c:/Users/Bagus Alifah Hasyim/Documents/Project/assignment1-plasticity/computational-plasticity/main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
 (C:\Users\Bagus Alifah Hasyim\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -202,14 +202,7 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 ) (C:\Users\Bagus Alifah Hasyim\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count307
-) (main.aux
-
-LaTeX Warning: Label `tab:material-properties' multiply defined.
-
-
-LaTeX Warning: Label `tab:material-properties' multiply defined.
-
-)
+) (main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -290,7 +283,7 @@ Package caption Info: End \AtBeginDocument code.
 <images/TaskQ1.png, id=1, 362.5545pt x 320.1561pt>
 File: images/TaskQ1.png Graphic file (type png)
 <use images/TaskQ1.png>
-Package pdftex.def Info: images/TaskQ1.png  used on input line 58.
+Package pdftex.def Info: images/TaskQ1.png  used on input line 59.
 (pdftex.def)             Requested size: 234.8775pt x 207.41017pt.
 
 
@@ -300,12 +293,12 @@ Package pdftex.def Info: images/TaskQ1.png  used on input line 58.
 <images/TaskQ2.png, id=14, 377.0085pt x 320.6379pt>
 File: images/TaskQ2.png Graphic file (type png)
 <use images/TaskQ2.png>
-Package pdftex.def Info: images/TaskQ2.png  used on input line 68.
+Package pdftex.def Info: images/TaskQ2.png  used on input line 69.
 (pdftex.def)             Requested size: 244.27461pt x 207.75166pt.
 
 
 [2 <./images/TaskQ1.png> <./images/TaskQ2.png>]
-Overfull \hbox (9.73279pt too wide) in paragraph at lines 97--105
+Overfull \hbox (9.73279pt too wide) in paragraph at lines 102--110
  [][] 
  []
 
@@ -320,21 +313,17 @@ Overfull \hbox (9.73279pt too wide) in paragraph at lines 97--105
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 4603 strings out of 469923
- 78324 string characters out of 5462358
- 470666 words of memory out of 5000000
- 31403 multiletter control sequences out of 15000+600000
+ 4611 strings out of 469923
+ 78271 string characters out of 5462358
+ 469790 words of memory out of 5000000
+ 31411 multiletter control sequences out of 15000+600000
  633455 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,570b,384s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,564b,413s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Bagus Alifah Hasyim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on main.pdf (5 pages, 222248 bytes).
+Output written on main.pdf (5 pages, 225965 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

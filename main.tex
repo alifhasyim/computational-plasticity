@@ -25,7 +25,7 @@
 \maketitle
 
 \section*{Given Data}
-In this section we need to define every data that is given in the assignment, such as the material properties, geometry, 
+\hspace*{2em}In this section we need to define every data that is given in the assignment, such as the material properties, geometry, 
 and other relevant parameters that are needed for the analysis. Therefore, following data shall we define using the author's "immatrikulation nummer":
 
 \begin{itemize}
@@ -34,8 +34,8 @@ and other relevant parameters that are needed for the analysis. Therefore, follo
     \item $\sigma_{yb} = 200 + (10 \times 8) = 280 \;\text{MPa}$
 \end{itemize}
 
-\section*{Introduction}
-In this assignment, we will analyze the mechanical response of a baseline plate
+\section{Introduction}
+\hspace*{2em}In this assignment, we will analyze the mechanical response of a baseline plate
 and a plate with a circular inclusion under uniaxial loading. 
 The analysis will include comparison of obtaining stress-strain curves between the force-displacement and
 direct stress-strain curves, differentiating plane stress and plane strain conditions, comparing 
@@ -48,9 +48,10 @@ All calculations and results are based on the provided data and the author's uni
 identification number. Numerical analysis will be performed using Abaqus CAE with an appropriate
 boundary condition and settings. 
 
-\section*{Set up of the Model}
-For the model setup, we will use Abaqus CAE to create a 2D model of the plate with the specified geometry and material properties.  
-\subsection*{Geometry}
+\section{Set up of the Model}
+\hspace*{2em}For the model setup, we will use Abaqus CAE to create a 2D planar-deformable shell model of the plate with the specified geometry, boundary condition, material properties, and mesh.  
+\subsection{Geometry and Boundary Conditions}
+%add axis in the figure, for direction 1, 2, and 3
 \begin{enumerate}
      \item \textbf{Baseline Plate:} A rectangular plate with length $L = 40 \;\text{mm}$, width $W = 10 \;\text{mm}$, and thickness $t = 1 \;\text{mm}$.
         \begin{figure}[H]
@@ -58,7 +59,7 @@ For the model setup, we will use Abaqus CAE to create a 2D model of the plate wi
             \includegraphics[width=0.5\textwidth]{images/TaskQ1.png}
         \caption{Baseline plate geometry with defined material A. Two boundary conditions are applied, which are the 
         fixed support restriction in y direction on the bottom line of the plate, fixed support point on the bottom right point,
-        and constant distribution of displacement in y direction on the top line of the plate.}
+        and constant distribution of displacement in y direction on the top line of the plate, which has value of 5 mm.}
         \label{fig:geometryQ1}
 \end{figure}
 
@@ -66,21 +67,25 @@ For the model setup, we will use Abaqus CAE to create a 2D model of the plate wi
 \begin{figure}[H]
         \centering
             \includegraphics[width=0.52\textwidth]{images/TaskQ2.png}
-        \caption{Baseline plate geometry with defined material B. Boundary conditions are the same as in Task 1.}
+        \caption{Plate with circular inclusion and defined material B. Boundary conditions are the same as in Task 1 shown in Figure~\ref{fig:geometryQ1}.}
         \label{fig:geometryQ2}
 \end{figure}
 \end{enumerate}
+\subsection{Material Properties}
+\hspace*{2em}Material properties for the analysis are provided from the task definition, which there are some
+material parameters that need to be manually calculated based on the author's Immatrikulation Nummer in at very 
+first section. 
+For task 1, material A (see Table~\ref{tab:materialA-properties}) will be used and defined as an elastic-plastic material with properties based on the Young's modulus $E$, Poisson's ratio $\nu$, and yield stress $\sigma_{ya}$,
+and ultimate tensile strength $\sigma_{f}$, and the strain at fracture $\epsilon_{f}^{f}$ in isotropic condition.   
+For task 2 with additional inclusion material B in the center, it is defined as an elastic-plastic material with anisotropic properties, 
+which it defines the properties differently in three orthogonal directions. Especially for the plastic properties in table~\ref{tab:materialB-plasticproperties},
+it used Hill's yield criterion, which is defined by the Hill's coefficients $R_{ij}$, where $i,j = 1,2,3$ for the three orthogonal directions. 
 
-
-
-\subsection*{Material Properties}
-The material properties for the analysis are provided from the task definition, which there are some
-parameters that need to be calculated based on the author's Immatrikulation Nummer.
 
 \begin{table}[H]
     \centering
     \caption{Elastic and plastic properties of material A.}
-    \label{tab:material-properties}
+    \label{tab:materialA-properties}
     \begin{tabular}{lllll}
         \toprule
         E (GPa) & $\nu$ & $\sigma_{ya}$ (MPa) & $\sigma_{f}$ (MPa) & $\epsilon_{f}^{f}$ \\
@@ -93,7 +98,7 @@ parameters that need to be calculated based on the author's Immatrikulation Numm
 \begin{table}[H]
     \centering
     \caption{Elastic properties of material B.}
-    \label{tab:material-properties}
+    \label{tab:materialB-elasticproperties}
     \begin{tabular}{lllllllll}
         \toprule
             \centering $E_1$ (GPa) & $E_2$ (GPa) & $E_3$ (GPa) & $\nu_{12}$ & $\nu_{13}$ & $\nu_{23}$ & $G_{12}$ (MPa) & 
@@ -107,7 +112,7 @@ parameters that need to be calculated based on the author's Immatrikulation Numm
 \begin{table}[H]
     \centering
     \caption{Plastic properties of material B.}
-    \label{tab:material-properties}
+    \label{tab:materialB-plasticproperties}
     \begin{tabular}{lllllllll}
         \toprule
             \centering $R_{11}$ & $R_{22}$ & $R_{33}$ & $R_{12}$ & $R_{13}$ & $R_{23}$ & $\sigma_{yb}$ & 
@@ -117,7 +122,7 @@ parameters that need to be calculated based on the author's Immatrikulation Numm
             \bottomrule
     \end{tabular}
 \end{table}
-
+\subsection{Meshing}
 \section*{Results and Discussion}
 
 \subsection*{Q1: Mechanical Response Analysis for Baseline Plate}
