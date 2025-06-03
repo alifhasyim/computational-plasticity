@@ -1,0 +1,325 @@
+
+\documentclass[12pt,a4paper]{cibb}
+
+\usepackage{subfigure,graphicx}
+\usepackage{amsmath,amsfonts,latexsym,amssymb,euscript,xr}
+\usepackage{booktabs}
+\usepackage[nodayofweek]{datetime}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage[table]{xcolor}
+\usepackage{color,colortbl,tabularx}
+
+\usepackage[english]{babel}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{amsmath,amsfonts,amsthm}
+% \usepackage[pdftex]{graphicx}
+\usepackage{pifont}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{subcaption} % Required for subfigure support
+
+
+\def\red{\color{red}}
+\def\black{\color{black}}
+\def\blue{\color{blue}}
+\def\magenta{\color{magenta}}
+
+\definecolor{LightBlue}{rgb}{0.88,0.9,0.9}
+
+\title{\Large $\ $\\ \bf Investigating Wind Pressure Coefficients on High-Rise Buildings: A Comparative Study of Wind Tunnel Data and Simulation using OpenFOAM}
+
+\author{\large Bagus Alifah Hasyim$^1$}
+\address{\footnotesize $\ $\\$^1$ Computational Engineering, Ruhr-Universität Bochum, Bagus.Hasyim@edu.ruhr-uni-bochum.de  \\
+%
+}
+
+\begin{document}
+
+\thispagestyle{myheadings}
+\pagestyle{myheadings}
+\markright{\tt Computational Wind Engineering Case Study}%check year
+
+
+\section{\bf Introduction}
+\label{sec:SCIENTIFIC-BACKGROUND}
+
+A recent study in Germany shows a shortage of over 800,000 apartments in 2024, where housing supply fails to meet the high demand, particularly due to the large influx of refugees and international students over the past year~\cite{WWW-DWE}. One solution to this issue is the construction of high-rise buildings, which can accommodate a large number of residents without requiring extensive land use, unlike horizontal urban housing models. 
+
+To further expand the capacity of such housing, increasing the building height can provide additional living space, thereby allowing for higher occupancy levels. However, this introduces another challenge that must be addressed. As building height increases, so does its slenderness, making it more susceptible to horizontal forces such as wind loads. This can significantly impact the serviceability of residential structures, particularly in regions of Germany prone to strong winds. Consequently, high wind pressure on buildings may compromise their stability and structural integrity. Therefore, analyzing pressure distribution is crucial for designing resilient structures that can withstand variations in wind load magnitude and distribution. 
+
+To address this challenge, this study analyzes the pressure distribution on a high-rise building with a specific aspect ratio and incoming wind direction using numerical simulations conducted with \texttt{OpenFOAM}. Additionally, a validation process is performed using experimental wind tunnel data provided by Tokyo Polytechnic University, which serves as a key source for building aerodynamics research. This validation enables an evaluation of the accuracy and consistency of the numerical simulation results in comparison to wind tunnel data. 
+
+\section{\bf Wind Tunnel Experiments}
+
+The wind tunnel experiments were provided by the Tokyo Polytechnic University’s official website~\cite{TOKYO}. Various types of high-rise buildings are available in their database. For this case study, the author chose isolated high-rise buildings with a rectangular or square plan. When setting up the high-rise building model, certain geometric parameters must be met, specifically the building’s breadth, depth, and height. Additional information includes the boundary condition setup, which consists of wind magnitude and direction relative to the building, as well as the alpha parameter, which is later used to determine the type of wind boundary layer in the wind profile. This information is also crucial for calculating the inflow profile (represented as $z_0$) in the \texttt{OpenFOAM} boundary condition setup. Table~\ref{tab:windTunnelSetup} presents the details of the boundary condition setup and geometric dimensions. The dimensions used in this case study are $0.3$ m, $0.1$ m, and $0.3$ m for the breadth, depth, and height, respectively. All parameters were provided in a downloadable \texttt{Matlab} file available on the official database website.
+
+\begin{table}[httb!] \small
+\centering
+    \begin{tabularx}{0.55\textwidth}{ l  l  l c }
+        \toprule
+          \textbf{Parameters} & \textbf{Symbol} & \textbf{Unit} & \textbf{value} \\
+        \midrule
+        Breadth & $b$ & $meter$ & $0,3$ \\
+			Depth & $d$ & $meter$ & $0,1$ \\
+			Height & $h$ & $meter$ & $0,3$\\
+			Model Scale & $m_s$ & $unitless$ & $1/400$ \\
+                Average Wind Speed & $U_h$ & $m/s$ & $10.7611$\\
+			Wind Direction & $\theta$ & $\circ$ & $75$\\
+			Alpha Parameter & $\alpha$ & $unitless$ & $1/4$ \\
+        \bottomrule
+    \end{tabularx}
+    \caption{\textbf{Wind Tunnel Set Up}.
+    There are the extracted parameter from the Tokyo Polytechnic University database from the \texttt{Matlab} file.\label{tab:windTunnelSetup}}
+\end{table}
+
+\newpage
+Another important aspect of the setup is determining the measurement points for the pressure taps in the high-rise building geometry. The pressure values at specific points were recorded according to the predefined pressure tap locations in the wind tunnel experiment. This is crucial information to ensure that the comparison between the pressure values obtained from the numerical simulation and the wind tunnel experiment is valid. 
+The number and placement of pressure taps on the high-rise building must be carefully considered to obtain accurate and comparable results between the real and simulated data. The predefined pressure tap locations are shown in Figure~\ref{fig:measurementPointLoc}. The coordinates are presented in an unfolded geometry configuration of the high-rise building. There are 320 measurement points in total, with 40 columns distributed along the horizontal axis and 8 rows along the vertical axis. 
+
+\begin{figure}[h]
+\vspace{1mm}
+ \begin{center}
+\includegraphics[width=1\textwidth]{./images/pressure_tap_graph.png}
+\caption{
+Pressure tab location for each measurement points with respect to the vertical direction and horizontal direction of the unfolded high-rise building geometry. The distance of every measurement points located in the edge are $0,01875$ m and $0,01$ m on the horizontal and vertical direction, respectively. While the distance of each every measurement points to the others are $0,0375$ m and $0,02$ m on the horizontal and vertical direction, respectively.}
+\label{fig:measurementPointLoc}
+\vspace{-5mm}
+\end{center}
+\end{figure}
+
+It is important to note that there are specific distances between the measurement points and the edges of the walls, as defined in Figure~\ref{fig:measurementPointLoc}, along with the spacing between each measurement point. These raw data values were extracted from the \texttt{Matlab} file available in the database. However, further processing is required in the numerical simulation since the extracted data is initially in a 2D unfolded geometry format.
+
+\section{\bf Methodology}
+\label{sec:DATA-AND-METHODS}
+
+In this case study, the investigated high-rise building set up was defined as closed as possible from the experimental database in the numerical simulation setting process in the \texttt{OpenFOAM}. This includes the scaled building geometry dimension information, the position of the measurement point of the pressure, as well as the boundary condition set up.
+
+\subsection{\bf \it Overall Workflow}
+\label{sec:TABLES-AND-FIGURES}
+
+\begin{figure}[h]
+\vspace{1mm}
+ \begin{center}
+\includegraphics[width=0.8\textwidth]{./images/MainWorkFlow.png}
+\caption{
+Schematic plan from the geometry with the measurement point extracted from the wind tunnel database experimental set up.}
+\label{fig:schematicWorkflow}
+\vspace{-5mm}
+\end{center}
+\end{figure}
+
+To conduct the case study, a specific workflow should be designed to systematically justify the process flow. This is because the \texttt{OpenFOAM} framework consists of several folders, each containing user-defined simulation setup parameters.
+As shown in Figure~\ref{fig:schematicWorkflow}, the first step is to define the boundary conditions, geometry, and measurement points. The boundary condition setup consists of four main folders. The "0" folder contains information regarding the condition profile, describing the flow behavior at the boundaries. Several parameters must be specified, such as the flow direction, velocity magnitude, roughness length, reference height, and displacement height.
+The "system" folder contains the solution procedure. Here, the user can define run control parameters, including the start and end times, as well as data acquisition settings during runtime. It also contains the discretization schemes for the Finite Volume Method and the solver type, including the definitions of tolerances and algorithm parameters.
+The final folder that needs to be set up is for parallel processing. This is an optional feature in \texttt{OpenFOAM} that allows users to utilize multiple CPU cores to accelerate the simulation process. Those who wish to reduce overall simulation runtime can take advantage of this tool to improve computational efficiency.
+
+Another crucial part of the boundary condition setup is defining the measurement points and wind tunnel conditions. These inputs are necessary to accurately simulate the object being studied. Once all input files are properly defined, the numerical simulation can be executed, producing both qualitative and quantitative results—namely, the pressure distribution and the measured values at specific points.
+Before conducting a comparative analysis between the simulation and experimental data, a mesh sensitivity study is performed to examine the impact of mesh size on simulation results. This process is iterative, where finer meshes are tested to determine whether mesh refinement significantly influences the results. Then, the results improvement process involves verifying measurement locations, visually inspecting the mesh, and adjusting parameters to increase the quality of the simulation. 
+
+
+
+\subsection{\bf \it Wind Tunnel Dimension Setting Up and Measurement Point}
+In this comparative study, a wind tunnel model is required to match the conditions of the experimental wind tunnel setup. A standard wind tunnel dimension is applied, where the distance from the object to the inlet and surrounding walls is 4.5H, while the distance from the object to the outlet is 14.5H. This large inlet distance is necessary to allow the velocity boundary layer to develop, ensuring consistency with the experimental data.
+A significant distance between the object and the surrounding walls (left, right, and top) is also considered in the wind tunnel dimension design to minimize airflow acceleration between the tunnel walls and the object. Additionally, a larger distance between the object and the outlet is included to capture vortex phenomena and prevent flow recirculation from the outlet.
+A schematic representation of the wind tunnel is shown in Figure~\ref{fig:windtunneltop} and Figure~\ref{fig:windtunnelbot}. Before setting up the wind tunnel, the high-rise building model must first be rotated, and then the wind tunnel dimensions are calculated accordingly. The final wind tunnel dimensions are presented in Table~\ref{tab:windtunneldim}. After setting up the wind tunnel dimensions, the next step is to assign the measurement points on the high-rise building. These measurement points are obtained from the database; however, they need to be transformed to ensure that their locations align with the rotated high-rise building.  
+
+\begin{figure}[h]
+\vspace{3mm}
+ \begin{center}
+\includegraphics[width=1\textwidth]{./images/windTunnel_setup_top.png}
+\caption{
+Top view wind tunnel dimensioning and high-rise building positioning.}
+\label{fig:windtunneltop}
+\vspace{-5mm}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\vspace{3mm}
+ \begin{center}
+\includegraphics[width=1\textwidth]{./images/windTunnel_setup_bot.png}
+\caption{
+Bottom view wind tunnel dimensioning and high-rise building positioning.}
+\label{fig:windtunnelbot}
+\vspace{3mm}
+\end{center}
+\end{figure}
+
+\begin{table}[httb!] \small
+\centering
+\vspace{3mm}
+    \begin{tabularx}{1\textwidth}{ l  l  c }
+        \toprule
+          \textbf{Parameters} & \textbf{Calculation/Symbols} & \textbf{Results} \\
+        \midrule
+        Building breadth & $b$ & $0.3$ \\
+        Building depth & $d$ & $0.1$ \\
+        Reference Height & $H$ & $0.3$ \\
+        Distance from the Surroundings & $L_s = 4.5H$ & $1.3$ m \\
+        Distance from the Outlet & $L_o = 14.5H$ & $4.35$ m \\
+        $W_T$ Length & $L_w = 4.5H + b\sin(75)+d\cos(75) + 14.5H$ & $6.016$ m\\
+        $W_T$ Breadth & $L_b = 2(4.5H) + b\cos(75)+d\sin(75)$ & $2.874$ m \\
+        $W_T$ Height & $L_h = 4.5H + H$ & $1.65$ m \\
+        \bottomrule
+    \end{tabularx}
+    \caption{\textbf{Wind Tunnel Dimension Calculation}.
+    \label{tab:windtunneldim}}
+    \vspace{5mm}
+\end{table}
+
+
+
+\subsection{\bf \it Mesh Set Up}
+For this case study, there are 3 type of different meshes that used. This was used for the mesh sensitivity study, where in this analysis the goal was to know whether there are some influence in changing of mesh size. The mesh information for three variations described in following table. 
+
+\begin{table}[httb!] \small
+\centering
+\vspace{3mm}
+    \begin{tabularx}{0.8\textwidth}{ l  l  l c }
+        \toprule
+          \textbf{Mesh Settings/Parameters} & \textbf{Coarse Mesh} & \textbf{Medium Mesh} & \textbf{Fine Mesh} \\
+        \midrule
+        BlockMesh (wind tunnel mesh) & (150 75 50) & (150 75 50) & (150 75 50) \\ 
+	Level of Refinement (triSurface) & Level 3 & Level 5 & Level 6 \\ 
+	  Number of Refinement Box & 4 Box & 4 Box & 5 Box\\ 
+	Number of Cells/Mesh & 805381 & 2196260 & 4686400\\ 
+        \bottomrule
+    \end{tabularx}
+    \caption{\textbf{Mesh Set up}.
+    For mesh sensitivity analysis in this study case, three mesh refinement various were used to see the influence of the mesh size to the results.\label{tab:meshsetup}}
+    \vspace{-2mm}
+\end{table}
+
+\newpage
+\subsection{\bf \it Boundary Condition}
+The boundary condition consists of several aspects. The first aspect relates to the boundary layer. Since the model simulation involves a high-rise building located close to the Earth's surface, modeling it with an Atmospheric Boundary Layer (ABL) is an appropriate choice. This is because wind flow behavior is affected by surface roughness, which creates a velocity distribution normal to the surface, commonly referred to as the boundary layer.
+Several aspects need to be defined in the ABL boundary condition regarding velocity. The first is wind direction, which determines how the roughness length of the surface is calculated and projected normally from the ground. This calculation is based on the alpha parameter used in the wind tunnel experiment. An additional step is required, involving interpolation based on the roughness class to obtain the corresponding roughness length. The roughness length must then be scaled by the experimental setup's scaling factor to match the experimental conditions.
+Another important aspect is the reference height, which defines the maximum height of the high-rise building.
+
+For the simulation type, the study employs the Reynolds-Averaged Navier-Stokes (RANS) method, specifically using the k-
+$\varepsilon$ turbulence model. A Newtonian model is used as the transport model. All boundary condition setups are summarized in Table~\ref{tab:bcsetup}.
+
+
+\begin{table}[httb!] \small
+\centering
+\vspace{5mm}
+    \begin{tabularx}{0.7\textwidth}{ l  l  l c }
+        \toprule
+          \textbf{Boundary Condition} & \textbf{Value/Type}  \\
+        \midrule
+        Boundary Layer & Atmospheric Boundary Layer (ABL)  \\ 
+	Velocity Direction $(x,y,z)$ & $(1, 0, 0)$  \\ 
+	Magnitude & $10.7611$ m/s \\ 
+        Height Direction $(x,y,z)$ & $(0, 0, 1)$  \\
+	Alpha Parameter ($\alpha$) & $0.25$ \\
+        Roughness Class & Very Rough \\
+        Roughness Height & $0.00148$ m (scaled) \\
+        
+        \bottomrule
+    \end{tabularx}
+    \caption{\textbf{Boundary Condition Set Up}.
+    For mesh sensitivity analysis in this study case, three mesh refinement various were used to see the influence of the mesh size to the results.\label{tab:bcsetup}}
+    \vspace{-5mm}
+\end{table}
+
+\subsection{\bf \it Numerical Schemes and Solution Procedures}
+The numerical schemes involve seven defined aspects. 
+
+\begin{enumerate}
+    \item \textbf{Time Derivative:} The simulation uses a steady-state approach, meaning that the governing condition in the RANS simulation is $\frac{\delta \phi}{\delta t}=0$.  
+    \item \textbf{Gradient Terms:} These relate to the time-averaged momentum equations, where Gauss linear interpolation is used as the gradient scheme.  
+    \item \textbf{Divergence Terms:} The bounded Gauss linear upwind scheme is applied, ensuring that the flux at the outlet equals the flux at the midpoint of the discretization.  
+    \item \textbf{Laplacian Terms:} The Gauss linear scheme is used for the diffusion coefficient and surface normal gradient calculations.  
+    \item \textbf{Interpolation Schemes:} Linear interpolation is applied to compute face values from cell center values, particularly for velocity calculations.  
+    \item \textbf{Gradient Calculation:} Linear interpolation is used, considering the non-orthogonal mesh's surface normal vectors to maintain second-order accuracy.  
+\end{enumerate}
+
+Lastly, for the \textbf{solver}, the SIMPLE algorithm is used for pressure-velocity coupling. In particular, for pressure calculations, the generalized geometric-algebraic multi-grid solver is applied. This solver is specifically used for pressure mapping, allowing for faster convergence on coarser meshes. Convergence is considered achieved when all scaled residuals reach $10^{-6}$ for pressure, $u_x$, $u_y$, $u_z$, and $k_{\varepsilon}$.  
+The obtained simulation data are expressed using the coefficient of pressure ($c_p$), which measures the ratio between surface and dynamic pressure. The coefficient of pressure is defined as follows:
+
+
+\begin{equation}
+    c_p = \frac{p - p_\infty}{\rho 0.5 u_\infty^2}
+\end{equation}
+
+
+Here $p$ is the surface pressure, $p_\infty$ is the static pressure and the lower part is the static pressure. This calculation will be inserted into the post-processing in order to obtain these pressure normalize values distribution. 
+
+
+
+\section{\bf Results and Discussion}
+\label{sec:RESULTS}
+
+\subsection{\bf \it Mesh Sensitivity Study}
+The mesh sensitivity study was conducted to evaluate whether influences are influenced by refining the mesh size. Hence, the rule of thumb uses three variations of mesh sizes, accordingly to the mesh defined in Section 3.3. The relation between the coarseness of the mesh and the mean value of $c_p$ shown similarity for each meshes variation, with the highest standard deviation about 0.6 at line 1, which located at most bottom part of the high-rise building. Figure ~\ref{fig:meshsensitivity} shown almost every point at medium mesh having lower mean $c_p$ rate compare to the fine and coarse mesh. Both meshes looks identical in terms of value, unless for Line 1 that has the highest standard deviation. With this small standard of deviation, this can be stated that the mesh has low influence on the simulation results, which the process can proceed to the comparison of wind tunnel experiment and the simulation.
+
+
+\begin{figure}[h]
+\vspace{1mm}
+ \begin{center}
+\includegraphics[width=1\textwidth]{./images/mesh_sens_interactive.png}
+\caption{
+Mesh sensitivity study results from different mesh size based on the Coefficient of Pressure measurement.}
+\label{fig:meshsensitivity}
+\vspace{-10mm}
+\end{center}
+\end{figure}
+
+\subsection{\bf \it Comparison of Wind Tunnel and Numerical Simulation Results}
+The simulation results shown visually in figure~\ref{fig:visualizecomparison}, where there are some similarity in the pressure coefficient distribution. In the windward side, there are some stripes form across the section, where the stripes values are relatively negative. While in the left and right side, its also shown negative area of pressure compare in the middle, which here the right side are having more negative $c_p$ compare to the left side. Secondly for the R-Ward, it also shows the same pattern, where in the simulation there is a spot where there are some high-concentrated high positive value of $c_p$ at the top right side, as in the experimental results. The difference lies on how its distributed, as in the simulation it does not show concentrated area, but most likely a well-distributed high $c_p$ value area. Thirdly, Leeward also showed the same behavior, where at the top left side the pressure coefficient tends to have more negative value compared to the bottom right side. However, in the simulation results, it does not show a more positive value on the bottom left side, as shown in the experimental results. Lastly, the L-Sideward has shown quite similar behavior, but there are some areas which it does not describe in the experimental result. In this case, it is the bottom right side, where in the simulation it has more distribution compared to the experimental with more homogeneous distribution. 
+
+\begin{figure}[h]
+\vspace{1mm}
+ \begin{center}
+\includegraphics[width=1\textwidth]{./images/visualization_comparison.png}
+\caption{
+Comparison of the Pressure Coefficient ($c_p$) distribution over the high-rise building all surface's sides from the simulation (top) and experimental data base (bottom).}
+\label{fig:visualizecomparison}
+\vspace{-5mm}
+\end{center}
+\end{figure}
+
+After analyzing the results qualitatively, the results also analyzed quantitatively. Where all of the pressure coefficient value for the simulation were measured in the same coordinates as in the experimental data in order to obtain the comparable results. In figure~\ref{fig:comparison1} shown the difference value of coefficient of pressure in every measurement points for every height between the simulation and experimental results, which shown in straight line and x marker respectively. The simulation results overall shown the same behavior tendency for all measurement point in every height, where as for the windward facing, the results were quite the same.  
+
+\begin{figure}[h]
+\vspace{1mm}
+ \begin{center}
+\includegraphics[width=0.87\textwidth]{./images/graphComparison_2.png}
+\caption{
+Comparison of the Pressure Coefficient ($c_p$) between simulation and experimental study results for every measurement height point with the legends marking the probe location.}
+\label{fig:comparison1}
+\end{center}
+\end{figure}
+
+For the R-Sideward, the measurement in height 0.0625 shows almost similar results with the wind tunnel. For the other measurement point, which is most located at the upper part of the 0.0625, the simulation results produced higher value compare with the experimental results. The coefficient were increase as the measurement height observation increase, where at most top measurement point in height 0.9375, it has $c_p$ values around 1 until 1.5. This behavior were also shown by the experimental results, where the overall $c_p$ were increase as the height observation also increase. Then at the Leeward side, the simulation results shown a two different region, where as at first the pressure is more negative than the wind tunnel experiment and its continue to increase at the end of the leeward point. This means that the simulation have tendency to produce more negative pressure area. While at the L-side, all of the hight measurement shows lower value of negative pressure. 
+
+To obtain better visualization, figure~\ref{fig:linearlines} shows the linear relation between the simulation results and experimental study. Agreement lines shows 100 \% hit accuracy percentage for the correctness of the simulation results. Additional lines were also provided up until 50 \% deviation in order to see the relation of the values of both cases. From the plot stated that $c_p$ between -0.3 and 0.1 with respect to the wind tunnel experiment, most of the point located outside the 50 \% deviation. While from region -0.8 to -0.2, there are some majority points located in between the upper 25 and 50 \% deviation, while some of them are out of bounds from the deviation lines. This results is contrary for the positive pressure region, where most of the positive $c_p$ located outside the upper 50 \% deviation line, while maintaining its position from the deviation line. This high deviation in the Leeward may caused by the high bank angle, which hence in this region will cause separation and eventually turbulence flow will generate.
+
+
+\begin{figure}[h]
+\vspace{1mm}
+ \begin{center}
+\includegraphics[width=0.9\textwidth]{./images/linearity_graph_combined.png}
+\caption{
+Plotting of the coefficient pressure of the wind tunnel and simulation result based on each measurement point with deviation reference line.}
+\label{fig:linearlines}
+\vspace{-5mm}
+\end{center}
+\end{figure}
+
+For design purposes, a lower value of negative pressure is considered a suitable safety margin because it results in a higher margin. Despite the deviation of the simulation results from the experimental study, this deviation is favorable since the simulation results are considered to be in a safer region. Therefore, engineers can use it to design for a more extreme worst-case scenario.
+
+\section{\bf Conclusion}
+\label{sec:CONCLUSIONS}
+
+From this case study, it can be concluded that the simulation results closely resemble those of the experimental study. This is confirmed by the validation study, which compares both results in both qualitative and quantitative aspects. However, some deviations in value are observed, which are acceptable since they follow the same trend as the experimental results and can be considered part of a safety margin for future design references. Further studies should be conducted, particularly in analyzing different wind-angle directions in high-rise building case studies.
+
+\footnotesize
+\bibliographystyle{unsrt}
+\bibliography{bibliography_CIBB_file.bib} 
+\normalsize
+
+\end{document}
