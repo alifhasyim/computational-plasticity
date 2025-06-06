@@ -112,6 +112,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print("Successfully completed the tensile test visualization.")
         
         
         
