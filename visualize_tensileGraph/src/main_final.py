@@ -91,17 +91,15 @@ class TensileTestVisualization:
 def main():
     # File names (relative to ../resources/)
     file_names = {
-        "Anisotropic 0°": "Anisotropic_0.dat",
-        "Anisotropic 45°": "Anisotropic_45.dat",
-        "Anisotropic 90°": "Anisotropic_90.dat",
-        "Isotropic": "isotropic_tensile.dat"
+        "Direct Stress-Strain Extraction": "Direct_PlaneStress.dat",
+        "Calculated Force-Displacement": "Calculated_PlaneStress.dat"
     }
 
     # Physical properties
-    cross_section_mm2 = 10 * 40
-    specimen_length_mm = 200
+    cross_section_mm2 = 1 * 20
+    specimen_length_mm = 20
     input_directory = "../resources/"
-    output_plot_path = "../res/tensile_plot_comparison.png"
+    output_plot_path = "../res/comparison_direct_calculated.png"
 
     # Run Visualization process
     proc = TensileTestVisualization(input_directory, 
