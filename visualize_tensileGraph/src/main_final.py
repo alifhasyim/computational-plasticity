@@ -99,7 +99,7 @@ def main():
     cross_section_mm2 = 1 * 20
     specimen_length_mm = 20
     input_directory = "../resources/"
-    output_plot_path = "../res/comparison_direct_calculated.png"
+    output_plot_path = "../visualized_tensileGraph/res/comparison_direct_calculated.png"
 
     # Run Visualization process
     proc = TensileTestVisualization(input_directory, 

@@ -5,8 +5,8 @@
       "name": "Python: main.py",
       "type": "python",
       "request": "launch",
-      "program": "${visualize_TensileGraph}/src/main_final.py",
-      "cwd": "${visualize_TensileGraph}"
+      "program": "${workspaceFolder}/main/main.py",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
