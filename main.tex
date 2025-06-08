@@ -123,14 +123,65 @@ it used Hill's yield criterion, which is defined by the Hill's coefficients $R_{
     \end{tabular}
 \end{table}
 \subsection{Meshing}
+\hspace{2em}The models for this tasked are differentiate into two different 
+meshes types, which first one is the homogeneous baseline plate 
+with a uniform mesh size distribution, and the 
+second one is the plate with circular inclusion,
+which it has a customized mesh distribution in order to 
+take account creating symmetrical meshes distribution 
+across the geometry variant. Creating meshes for geometry with inclusion
+should be taking care of some aspects, for instance, defining the distribution 
+pattern of the mesh size, which the program mesh algorithm from Abaqus
+CAE can automatically generate a symmetrical mesh distribution. Hence, 
+defining geometry partition is having an important role in order to achieve
+a good mesh distribution. The following figures show the meshing
+for both models. Noted that in this assignment, we will not use the
+reduced integration element, which in the end the logaritihmic strain
+will be shown instead of the regular strain. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/MeshQ1.png}
+    \caption{Mesh for the baseline plate with uniform mesh size distribution, 
+    with total of 1600 elements. The mesh size is defined as 0.25 mm
+    gap size with set up for both plane stress and plane strain
+    conditions.}
+    \label{fig:MeshQ1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/MeshQ2.1.png}
+        \caption{Mesh for the plate with circular inclusion for the coarse variation
+        with 1536 elements.}
+        \label{fig:MeshQ2.1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/MeshQ2.2.png}
+        \caption{Mesh for the plate with circular inclusion for fine mesh variation
+        with 6144 elements.}
+        \label{fig:MeshQ2.2}
+    \end{minipage}
+\end{figure}
 \section*{Results and Discussion}
 
 \subsection*{Q1: Mechanical Response Analysis for Baseline Plate}
-\begin{itemize}
-    \item[(a)] XXX…
-    \item[(b)] XXX…
-    \item[(c)] XXX…
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{visualize_tensileGraph/res/comparison_direct_calculated.png}
+    \caption{Comparison of
+    the stress-strain curves obtained from the force-displacement method and the direct stress-strain calculation
+    for plane stress condition. The direct stress-strain curve method is obtained 
+    by extracting the stress $\sigma_{22}$ and strain $\varepsilon_{22}$ directly from the 
+    history output, which are the whole nodes along the top edges of the baseplate. While the caculated
+    Force-Displacement is obtained by extracting the force 
+    $F_{22}$ and displacement $U_{22}$ from the history output, which are the whole nodes along the top edges of the baseplate.
+    Then the stress is obtained by dividing the force with the surface area
+    normal to the loading direction, which are 20 $mm^2$ 
+    \label{fig:ComparisonDirectCalculated}  
+\end{figure}
 
 \subsection*{Q2: Mechanical Response Analysis for Plate with Circular Inclusion}
 XXX…

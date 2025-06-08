@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 from pathlib import Path
 
+
+
 class TensileTestVisualization:
     def __init__(self, input_directory: Path, output_path: Path, data_names: dict,
                  gauge_length: float, cross_section_area: float):
@@ -47,24 +49,18 @@ class TensileTestVisualization:
 
     def plot_and_export(self):
         """
-        Plot the processed data and export it as a PNG image.
+        Plot the stress-strain curves and export the figure.
         """
-        # Set font sizes and styles (for easy resizing)
+        plt.rcParams['font.family'] = 'Times New Roman'
         plt.rcParams.update({
-            'font.family': 'Times New Roman',  # fallback (won't work directly)
             'font.size': 16,
             'axes.titleweight': 'bold',
             'axes.labelsize': 16,
             'xtick.labelsize': 16,
             'ytick.labelsize': 16,
             'legend.fontsize': 16,
-            'legend.title_fontsize': 18
+            'legend.title_fontsize': 24
         })
-
-        # Load Times New Roman manually via full path
-        font_path = "/usr/share/fonts/truetype/msttcorefonts/times.ttf"
-        font_size = plt.rcParams['font.size']
-        font_prop = FontProperties(fname=font_path, size=font_size)
 
         plt.figure(figsize=(12, 8))
         line_formats = ['-o', '--x', '-.^', '-']
@@ -72,18 +68,32 @@ class TensileTestVisualization:
             fmt = line_formats[i % len(line_formats)]
             plt.plot(data["strain"], data["stress"], fmt, label=data["label"])
 
-        plt.title("Exercise 2: Stress-Strain Curve from Tensile Test", fontproperties=font_prop)
-        plt.xlabel("Engineering Strain", fontproperties=font_prop)
-        plt.ylabel("Stress (MPa)", fontproperties=font_prop)
-        plt.legend(loc='lower right', title="Material Type", prop=font_prop, title_fontproperties=font_prop)
-        plt.xticks(fontproperties=font_prop)
-        plt.yticks(fontproperties=font_prop)
-        plt.grid(True)
+        plt.title("Stress-Strain Curve for Plane Stress and Plane Strai Condition")
+        plt.xlabel("Engineering Strain")
+        plt.ylabel("Stress (MPa)")
 
-        self.output_path.parent.mkdir(parents=True, exist_ok=True)  # Ensure output directory exists
+        # Add label on maximum value for each graph
+        for data in self.datasets:
+            max_idx = data["stress"].idxmax()
+            max_stress = data["stress"].iloc[max_idx]
+            stress_unit = "MPa"  # Change this as needed
+            # Place the label below the max point
+            plt.annotate(
+            f"Max: {max_stress:.1f} {stress_unit}",
+            xy=(data["strain"].iloc[max_idx], max_stress),
+            xytext=(data["strain"].iloc[max_idx], max_stress - 0.1 * max_stress),
+            arrowprops=dict(arrowstyle="->", color="black"),
+            fontsize=14,
+            ha='right',
+            va='top'
+            )
+        plt.legend(loc='lower right', title="Method of Curve Extraction")
+        plt.grid(True, which='both', linestyle='--', linewidth=0.7, alpha=0.7)
+        plt.minorticks_on()
+
+        self.output_path.parent.mkdir(parents=True, exist_ok=True)
         plt.savefig(self.output_path)
         print(f"Plot saved to: {self.output_path}")
-        plt.show()
 
 
 def main():
@@ -92,11 +102,11 @@ def main():
     project_root = Path(__file__).resolve().parents[2]
 
     input_directory = project_root / "visualize_tensileGraph" / "resources"
-    output_plot_path = project_root / "visualize_tensileGraph" / "res" / "comparison_direct_calculated.png"
+    output_plot_path = project_root / "visualize_tensileGraph" / "res" / "comparison_planeStress_planeStrain.png"
     
     file_names = {
-        "Direct Stress-Strain Extraction": "Direct_PlaneStress.dat",
-        "Calculated Force-Displacement": "Calculated_PlaneStress.dat"
+        "Plane Stress": "Calculated_PlaneStress.dat",
+        "Plane Strain": "Calculated_PlaneStrain.dat"
     }
 
     cross_section_mm2 = 1 
