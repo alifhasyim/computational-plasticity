@@ -226,6 +226,19 @@ In this section, we analyze the mechanical response of the plate with a circular
     \label{fig:ComparisonInclusion}
 \end{figure}
 
+\hspace{2em}From the response of the stress-strain curves for each plate, we can see that the plate with inclusion
+has a lower yield stress compared to the homogeneous plate. This cause by the material B inclusion's yield stress having
+lower value compare to the material A, which is 280 MPa. This will reduce the overall yield stress of the whole plate, 
+which will make the material softer compared to the homogeneous plate only using material A. 
+
+\hspace{2em}This reduction of overall stress is also applied in the maximum stress for the plate with inclusion, which also decrease in terms of value.
+The reason for this is because material B has a lower ultimate tensile stress compare to material A, which is 450 MPa and 550 MPa, respectively. Hence, the
+stress reduction is not in a huge difference, since the inclusion does not dominantly affect the overall tensile stress.
+
+\hspace{2em}In addition, the plate with inclusion shows simmilar behavior in the elastic
+region despite there is difference in the value of young's modulus between material A and B. Here, material A's young's modulus is dominating
+the role so that the overall elastic response for the plate with inclusion does not decrease. 
+
 \subsection*{Q3: Local Stress Field Distribution and Analysis}
 Hence, we will analyze the stress distribution for baseplates with inclusion. 
 \begin{figure}[H]
@@ -256,6 +269,24 @@ Hence, we will analyze the stress distribution for baseplates with inclusion.
     \caption{Contour plots of (a) von Mises stress, (b) $S_{11}$, (c) $S_{12}$, and (d) $S_{22}$ for the plate with circular inclusion.}
     \label{fig:stressFields}
 \end{figure}
+
+\hspace{2em}From the stress distribution contour plots in Figure~\ref{fig:stressFields},
+we can see some several characteristics of the stress behavior in the plate with circular inclusion.
+\begin{itemize}
+    \item In the von Misses stress in part (a), it shows a discontinuity stress distribution between the inclusion
+    and the outer of the non-inclusion part. This is because both material A as in the non-inclusion and material B
+    having the different material properties, which material B tends to be softer compare to material A.
+    Therefore, it can easily deform and hence will produce a lower stress.
+    \item As in the $S_{11}$ distribution, the stress tends to have negative value for the non-inclusion area.
+    This is because as the plate deform, the specimen will getting squized to the right side, parallel to x axis.
+    Hence, it will produce a reaction force opposite to the movement, and will produce a negative value of stress, 
+    which indicates that the material is getting compressed in the x direction.
+    \item In the $S_{12}$ plot, the shear stress value tends to be small in the whole part of the plate. However, there
+    are some shear stress generated in the boundary between the inclusion and the homogeneous part of the
+    plate, which here causes by the friction between two different material.
+    \item For the stress plot in the y direction, which is $S_{22}$, the highest stress mostly generated in the 4 edges
+    of material A and in between material A and inclusion material B.  
+\end{itemize}
 
 \subsection*{Q4: Comparison Analysis at Point A}
 To calculate the von Misses equivalent stress and equivalent plastic strain at point A analytically, 
@@ -297,34 +328,50 @@ equivalent stress and strain can be simplified as follows:
     \sigma_{eq, hill} = \sqrt{\frac{1}{2}((\sigma_{22}-\sigma_{33})^2 + (\sigma_{33}-\sigma_{11})^2 + (\sigma_{11}-\sigma_{22})^2 + 6\sigma_{23}^2 + 6\sigma_{31}^2 + 6\sigma_{12}^2)}
 \end{equation}
 \begin{equation}
-    \varepsilon_{eq} = \sqrt{\frac{2(\varepsilon_{pl,11}^2 + \varepsilon_{pl,22}^2 + \varepsilon_{pl,33}^2)}{3} + \frac{\varepsilon_{pl,12}^2}{3}}
-\end{equation}
-Before we can calculate the hill's equivalent stress and strain,
-we need to define the stress components at point A by determining from its strain.
-\begin{equation}
-    \varepsilon_{22}^{pl} = \varepsilon - \varepsilon_{el} = \frac{\Delta u_{2}}{l} - \frac{\sigma^y}{E_{2}} = \frac{5 \;\text{mm}}{20 \;\text{mm}} - \frac{360 \;\text{MPa}}{240 \;\text{GPa}} = 0.25 - 0.0015 = 0.2485
+    \varepsilon_{eq} = \sqrt{\frac{2(\varepsilon_{pl,11}^2 + \varepsilon_{pl,22}^2 + (\varepsilon_{pl,11}+\varepsilon_{pl,22})^2)}{3} + \frac{4\varepsilon_{pl,12}^2}{3}}
 \end{equation}
 
-Then we can start to calculate the stress components in y direction by taking account the hardening
-constant.
+At point A, the value of the stress and strain can be extracted directly from Abaqus. Following is the tabulized result for each 
+variable that are needed for the calculation.
+\begin{table}[H]
+    \centering
+    \caption{Extracted stress and strain components at point A from Abaqus.}
+    \label{tab:pointA-results}
+    \begin{tabular}{llllll}
+        \toprule
+        $\sigma_{11}$ (MPa) & $\sigma_{22}$ (MPa) & $\sigma_{12}$ (MPa) & $\varepsilon_{pl,11}$ & $\varepsilon_{pl,22}$ & $\varepsilon_{pl,12}$\\
+        \midrule
+        -2.61 & 472.16 & 1.24 & -0.1196 & 0.2388 & -0.0014\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Then we can use these data to calculate the equivalent von Mises stress and plastic strain. 
+
 \begin{equation}
-    \sigma_{22} = \sigma_{y} + H\varepsilon_{22}^{pl} =  360  + \frac{550-360}{0.4} \cdot 0.2485 = 478.0375 \;\text{MPa}
-\end{equation}
-Since the stress component is only at one direction, therefore we can simplified the von Misses equivalent stress
-and equivalent plastic strain as follows:
-\begin{equation}
-    \sigma_{eq, hill} = \sqrt{\frac{1}{2}((\sigma_{22}-0)^2 +  (0-\sigma_{22})^2)} = \sqrt{\frac{1}{2}(\sigma_{22}^2 + \sigma_{22}^2)} = 478.0375 \;\text{MPa}
+    \sigma_{eq, hill}^A = \sqrt{\frac{1}{2}((\sigma_{22}-0)^2 + (0-\sigma_{11})^2 + (\sigma_{11}-\sigma_{22})^2 + 6\sigma_{12}^2)} 
 \end{equation}
 
 \begin{equation}
-    \varepsilon_{eq} = \sqrt{\frac{2(\varepsilon_{pl,22}^2 + 0 + \varepsilon_{pl,22}^2)}{3}} = \sqrt{\frac{4(0.2485)^2}{3}} = 0.2869
+    \sigma_{eq, hill}^A = \sqrt{\frac{1}{2}((472.16-0)^2 + (0-(-2.61))^2 + ((-2.61)-472.16)^2 + 6(1.24)^2)}
+\end{equation}
+\begin{equation}
+    \sigma_{eq, hill}^A = 473.592 \; \text{MPa}
 \end{equation}
 
-Therefore, we obtain the Hill's equivalent stress 478.04 MPa and the equivalent strain of
-0.2869 at point A. From the simulation results, the equivalent von Mises stress at point A
-is $\sigma_{A} = 473.48 \text{MPa}$, while the equivalent plastic strain (PEEQ) is 
-$\varepsilon_{A} = 0.24$. 
+\begin{equation}
+    \varepsilon_{eq}^A = \sqrt{\frac{2((-0.1196)^2 + (0.2388)^2 + ((-0.1196)+(0.2388))^2)}{3} + \frac{4(-0.0014)^2}{3}}
+\end{equation}
+\begin{equation}
+    \varepsilon_{eq}^A = 0.2388
+\end{equation}
 
+\hspace{2em}Therefore, we obtain the Hill's equivalent stress 473.592 MPa and the equivalent strain of
+0.2388 at point A. From the simulation results, the equivalent von Mises stress at point A
+is $\sigma_{A} = 473.478 \; \text{MPa}$, while the equivalent plastic strain (PEEQ) is 
+$\varepsilon_{A} = 0.2388$ from probing directly the node at point A in Abaqus. Hence, we can see
+simmilar result for both stress and strain value, but there lies a different value between
+the calculated stress and the obtained stress, which here cause by the rounding-off error.
 
     \begin{figure}[H]
     \centering
@@ -353,63 +400,57 @@ $\varepsilon_{A} = 0.24$.
     \end{minipage}
     \caption{Comparison of von misses stress and equivalent plastic strain distribution 
     for coarse (a, c) and fine (b, d) mesh 
-    sizes.}
+    sizes for 1536 and 6144 nodes, respectively.}
     \label{fig:stressFields}
 \end{figure}
+\hspace{2em}As we employed a mesh refining process, both of the stresses and strains for both the maximum value
+are increase. But if we compare the stress at point A, using the finer mesh the value will decrease to $\sigma_{A}^{fine}=473.28 \; \text{MPa}$,
+while the PEEQ strain also decreasing but in a small amount to $\varepsilon_{A}^{fine} = 0.2385$.
+Hence refining the mesh can change the resulting value. In this case, it only change in a small amount, where it
+can be concluded as a small mesh sensitivity analysis, the mesh does not influence the
+generating results of both stress and strain values. 
+
 \subsection*{Q5: Comparison Analysis at Point B}
 Using equation~\ref{eq:hill_yield} and~\ref{eq:equivalent_plastic_strain}, we can calculate the Hill's equivalent stress and 
-equivalent plastic strain at point B analytically. Before calculating the stress and strain, 
-we need to define the plastic flow stress components at point B. Since the displacement only applied for 
-the y direction (which here is in direction 2), 
-the plastic flow stress component can be defined as follows:
-\begin{equation}
-    \sigma_{22} = \sigma_{y} + \sigma_{22}^{pl} = \sigma_{y} + H\varepsilon_{22}^{pl}
-    \label{eq:Q5}
-\end{equation}
-Where $H$ is the hardening modulus, $\sigma^y$ is the yield stress, and $\varepsilon_{22}^{pl}$ is the plastic strain in the direction of 2.
-Hence, we need to elaborate the unknown variables in the equations, starting form the plastic strain:
-\begin{equation}
-    \varepsilon_{22}^{pl} = \varepsilon - \varepsilon_{el} = \frac{\Delta u_{2}}{l} - \frac{\sigma^y}{E_{2}} = \frac{5 \;\text{mm}}{20 \;\text{mm}} - \frac{280 \;\text{MPa}}{220 \;\text{GPa}} = 0.25 - 0.00127 = 0.24873
-\end{equation}
-Then we can calculate the hardening modulus $H$ using the following equation:
-\begin{equation}
-    H = \frac{\sigma_{f} - \sigma_{y}}{\varepsilon_{f}^{b} - \varepsilon_{y}^{b}} = \frac{450 \;\text{MPa} - 280 \;\text{MPa}}{0.5 - 0} = 340 \;\text{MPa}
-\end{equation}  
-then we can calculate the plastic flow stress component in equation~\ref{eq:Q5}:
-\begin{equation}
-    \sigma_{22} = 280 \;\text{MPa} + 340 \;\text{MPa} \cdot 0.24873 = 280 \;\text{MPa} + 84.5682 \;\text{MPa} = 364.57 \;\text{MPa}  
-\end{equation}
+equivalent plastic strain at point B analytically. First, we need to extract the stress and strain
+components from Abaqus using the same method as in the previous question 4. Following are the extracted value
+at point B:
 
-Now we can calculate the Hill's equivalent stress at point B using equation~\ref{eq:hill_yield}. Since we only use the $\sigma_{22}$ component, we can
-reduce some terms in the equation and simplify it as follows:
-\begin{equation}
-    \sigma_{eq, hill} = \sqrt{F(\sigma_{22}-\sigma_{33})^2 + H(\sigma_{11}-\sigma_{22})^2}
-\end{equation}
-For F and H, we can use the values from the material B properties
+\begin{table}[H]
+    \centering
+    \caption{Extracted stress and strain components at point B from Abaqus.}
+    \label{tab:pointA-results}
+    \begin{tabular}{llllll}
+        \toprule
+        $\sigma_{11}$ (MPa) & $\sigma_{22}$ (MPa) & $\sigma_{12}$ (MPa) & $\varepsilon_{pl,11}$ & $\varepsilon_{pl,22}$ & $\varepsilon_{pl,12}$\\
+        \midrule
+        15.74 & 458.18 & 0 & -0.1629 & 0.2555 & 0\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+For F, G, and H, we can use the values from the material B properties
 \begin{align*}
 F &= \frac{1}{2} \left[ \frac{1}{(R_{22})^2} + \frac{1}{(R_{33})^2} - \frac{1}{(R_{11})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1.2)^2} + \frac{1}{(1.25)^2} - \frac{1}{(1)^2} \right] = 0.1672\\
+G &= \frac{1}{2} \left[ \frac{1}{(R_{33})^2} + \frac{1}{(R_{11})^2} - \frac{1}{(R_{22})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1.25)^2} + \frac{1}{(1)^2} - \frac{1}{(1.2)^2} \right] = 0.4728\\
 H &= \frac{1}{2} \left[ \frac{1}{(R_{11})^2} + \frac{1}{(R_{22})^2} - \frac{1}{(R_{33})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1)^2} + \frac{1}{(1.2)^2} - \frac{1}{(1.25)^2} \right] = 0.5277
 \end{align*}    
 
 Therefore, we can calculate the Hill's equivalent stress at point B as follows:
-
 \begin{equation}
-    \sigma_{eq, hill} = \sqrt{0.1672(364.57-0)^2 + 0.5277(0-364.57)^2} = 303.91 \;\text{MPa}
-\end{equation} 
-Next, we can calculate the hill's equivalent plastic strain at point B using equation~\ref{eq:equivalent_plastic_strain}
-and eliminate some terms, which will produce equation as follows:
-\begin{equation}
-    \varepsilon_{eq} = \sqrt{\frac{ G\varepsilon_{pl,22}^2}{FG+FH+GH}}
+    \sigma_{eq, hill}^B = \sqrt{0.1672(458.18-0)^2 + 0.5277(0-15.74)^2 + 0.5277(15.74-458.18)^2}
 \end{equation}
 
-Hence, we can calculate additionally the $G$ constant using the material B properties:
-\begin{align*}
-G &= \frac{1}{2} \left[ \frac{1}{(R_{33})^2} + \frac{1}{(R_{11})^2} - \frac{1}{(R_{22})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1.25)^2} + \frac{1}{(1)^2} - \frac{1}{(1.2)^2} \right] = 0.4728
-\end{align*}
+\begin{equation}
+    \sigma_{eq, hill}^B = 372.11 \;\text{MPa}
+\end{equation}
 
 Finally, we can calculate the hill's equivalent plastic strain at point B as follows:
 \begin{equation}
-    \varepsilon_{eq} = \sqrt{\frac{0.4728(0.24873)^2}{0.1672 \cdot 0.4728 + 0.5277 \cdot 0.4728 + 0.1672 \cdot 0.5277}} = 0.2649
+    \varepsilon_{eq}^B = \sqrt{\frac{0.1672(-0.1629)^2 +0.4728(0.2555)^2 + 0.5277(0.2555+(-0.1629))^2}{0.1672 \cdot 0.4728 + 0.5277 \cdot 0.4728 + 0.1672 \cdot 0.5277}}
+\end{equation}
+\begin{equation}
+    \varepsilon_{eq}^B = 0.3091
 \end{equation}
 \subsection*{Extra Task}
 To calculate $\frac{\partial{f}}{\partial{\sigma}}$ with Voigt notation tensor $\sigma = (\sigma_1, \sigma_2, \sigma_3, \sigma_4, \sigma_5, \sigma_6)$ from yield function 

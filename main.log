@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.8)  12 JUN 2025 13:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.8)  12 JUN 2025 17:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -209,6 +209,9 @@ LaTeX Warning: Label `fig:ComparisonDirectCalculated' multiply defined.
 
 LaTeX Warning: Label `fig:stressFields' multiply defined.
 
+
+LaTeX Warning: Label `tab:pointA-results' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -353,22 +356,22 @@ Package pdftex.def Info: visualize_tensileGraph/res/comparison_inclusion_non.png
 <images/MISES.png, id=44, 492.03825pt x 290.88675pt>
 File: images/MISES.png Graphic file (type png)
 <use images/MISES.png>
-Package pdftex.def Info: images/MISES.png  used on input line 235.
+Package pdftex.def Info: images/MISES.png  used on input line 248.
 (pdftex.def)             Requested size: 225.4804pt x 133.29909pt.
 <images/S11.png, id=45, 484.81125pt x 286.06876pt>
 File: images/S11.png Graphic file (type png)
 <use images/S11.png>
-Package pdftex.def Info: images/S11.png  used on input line 241.
+Package pdftex.def Info: images/S11.png  used on input line 254.
 (pdftex.def)             Requested size: 225.4804pt x 133.04678pt.
 <images/S12.png, id=46, 479.99326pt x 284.262pt>
 File: images/S12.png Graphic file (type png)
 <use images/S12.png>
-Package pdftex.def Info: images/S12.png  used on input line 247.
+Package pdftex.def Info: images/S12.png  used on input line 260.
 (pdftex.def)             Requested size: 225.4804pt x 133.53375pt.
 <images/S22.png, id=47, 482.40225pt x 287.27325pt>
 File: images/S22.png Graphic file (type png)
 <use images/S22.png>
-Package pdftex.def Info: images/S22.png  used on input line 253.
+Package pdftex.def Info: images/S22.png  used on input line 266.
 (pdftex.def)             Requested size: 225.4804pt x 134.27765pt.
 
 
@@ -380,28 +383,28 @@ Package pdftex.def Info: images/S22.png  used on input line 253.
 <images/MISES_Coarse.png, id=64, 467.94826pt x 278.2395pt>
 File: images/MISES_Coarse.png Graphic file (type png)
 <use images/MISES_Coarse.png>
-Package pdftex.def Info: images/MISES_Coarse.png  used on input line 333.
+Package pdftex.def Info: images/MISES_Coarse.png  used on input line 380.
 (pdftex.def)             Requested size: 225.4804pt x 134.0714pt.
 <images/MISES_Fine.png, id=65, 474.573pt x 284.262pt>
 File: images/MISES_Fine.png Graphic file (type png)
 <use images/MISES_Fine.png>
-Package pdftex.def Info: images/MISES_Fine.png  used on input line 339.
+Package pdftex.def Info: images/MISES_Fine.png  used on input line 386.
 (pdftex.def)             Requested size: 225.4804pt x 135.06055pt.
 <images/PEEQ_Coarse.png, id=66, 467.94826pt x 278.2395pt>
 File: images/PEEQ_Coarse.png Graphic file (type png)
 <use images/PEEQ_Coarse.png>
-Package pdftex.def Info: images/PEEQ_Coarse.png  used on input line 345.
+Package pdftex.def Info: images/PEEQ_Coarse.png  used on input line 392.
 (pdftex.def)             Requested size: 225.4804pt x 134.0714pt.
 <images/PEEQ_Fine.png, id=67, 470.9595pt x 283.65974pt>
 File: images/PEEQ_Fine.png Graphic file (type png)
 <use images/PEEQ_Fine.png>
-Package pdftex.def Info: images/PEEQ_Fine.png  used on input line 351.
+Package pdftex.def Info: images/PEEQ_Fine.png  used on input line 398.
 (pdftex.def)             Requested size: 225.4804pt x 135.80453pt.
 
 
-[10 <./images/MISES_Coarse.png> <./images/MISES_Fine.png> <./images/PEEQ_Coarse.png> <./images/PEEQ_Fine.png>]
+[10]
 
-[11]
+[11 <./images/MISES_Coarse.png> <./images/MISES_Fine.png> <./images/PEEQ_Coarse.png> <./images/PEEQ_Fine.png>]
 
 [12]
 
@@ -417,14 +420,14 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  4732 strings out of 468225
- 81344 string characters out of 5432490
- 490673 words of memory out of 5000000
+ 81357 string characters out of 5432490
+ 492670 words of memory out of 5000000
  33230 multiletter control sequences out of 15000+600000
  633455 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,1157b,415s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,65p,1157b,415s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Nutzer\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Nutzer/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on main.pdf (13 pages, 1992296 bytes).
+Output written on main.pdf (13 pages, 1993689 bytes).
 PDF statistics:
  123 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
