@@ -63,7 +63,7 @@ boundary condition and settings.
         \label{fig:geometryQ1}
 \end{figure}
 
-    \item \textbf{Plate with Circular Inclusion:} Same as the baseline plate, but with a circular inclusion of radius $r$ located at the center or specified position.
+    \item \textbf{Plate with Circular Inclusion:} Same as the baseline plate, but with a circular inclusion of radius $r=4$ mm located at the center or specified position.
 \begin{figure}[H]
         \centering
             \includegraphics[width=0.52\textwidth]{images/TaskQ2.png}
@@ -179,28 +179,244 @@ will be shown instead of the regular strain.
     Force-Displacement is obtained by extracting the force 
     $F_{22}$ and displacement $U_{22}$ from the history output, which are the whole nodes along the top edges of the baseplate.
     Then the stress is obtained by dividing the force with the surface area
-    normal to the loading direction, which are 20 $mm^2$ 
+    normal to the loading direction, which is A = 20 $mm^2$. While the strain is calculated by obtaining the displacement,
+    which then it will be divided by the baseplate original length, which is L = 20 $mm$, with respect to the loading
+    direction.} 
     \label{fig:ComparisonDirectCalculated}  
 \end{figure}
+    \hspace{2em}Based on Figure~\ref{fig:ComparisonDirectCalculated}, both stress-strain curves obtained from the two 
+    methods show different behavior. In the plastic region, the direct method produces a significant slope 
+    in the plastic flow region, while the calculated method shows a constant slope, 
+    indicating the material behaves as perfectly plastic without hardening. 
+    This difference occurs because, in the first method, the solver calculates the true stress-strain 
+    by accounting for changes in geometric properties such as the cross-sectional area. In the plastic 
+    region, the geometry undergoes necking, which decreases the cross-sectional area and leads to higher 
+    stress values. This method is often called the true stress-strain diagram, as it uses the logarithmic 
+    strain and accounts for the reduction in cross-sectional area.
+
+\hspace{2em}In the second method, the stress obtained by calculating the total force produced in the top nodal line of the baseplate divided by a constant area value, which here
+the stresses are most likely does not increase in the plastic region, since it use the original cross-sectional area as the dominator. This method also applied to calculate the strain, which only
+divide the displacement with the original length of the baseplate. This method is often use to create the engineering stress-strain curve. In the experimental tensile test, 
+this method oftenly used to obtain the stress-strain curve, since the obtained test data is only force and displacement of the extensiometer. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{visualize_tensileGraph/res/comparison_planeStress_planeStrain.png}
+    \caption{Comparison of plane stress and plane strain conditions
+    for the baseline plate with material A. The setting for plane stress and strain are distinguised by changing the type of meshing in
+    Abaqus based on the condition.} 
+    \label{fig:ComparisonDirectCalculated}  
+\end{figure}
+\hspace{2em}Based on Figure~\ref{fig:ComparisonDirectCalculated}, the stress-strain curves for both plane stress and plane strain conditions show similar behavior, with the plane strain condition exhibiting a slightly higher yield stress.
+This is expected, as the plane strain condition restricts deformation in the thickness direction, 
+leading to higher stress values. This stress produced since the strain restriction in the thickness
+will cause additional stress component that will increase the stress in the loading direction. Therefore, choosing the 
+plane stress condition is more appropriate for thin-plates analysis since it neglects stress generated 
+in the thickness direction. 
 
 \subsection*{Q2: Mechanical Response Analysis for Plate with Circular Inclusion}
-XXX…
+
+In this section, we analyze the mechanical response of the plate with a circular inclusion and compare it to the homogeneous baseline plate.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{visualize_tensileGraph/res/comparison_inclusion_non.png}
+    \caption{Comparison of the stress-strain curves for the homogenous baseplate and plate with circular
+    inclusion.}
+    \label{fig:ComparisonInclusion}
+\end{figure}
 
 \subsection*{Q3: Local Stress Field Distribution and Analysis}
-XXX…
+Hence, we will analyze the stress distribution for baseplates with inclusion. 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/MISES.png}
+        \caption*{(a) $\sigma_{vM}$}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/S11.png}
+        \caption*{(b) $S_{11}$}
+    \end{minipage}
+    \vspace{1em}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/S12.png}
+        \caption*{(c) $S_{12}$}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/S22.png}
+        \caption*{(d) $S_{22}$}
+    \end{minipage}
+    \caption{Contour plots of (a) von Mises stress, (b) $S_{11}$, (c) $S_{12}$, and (d) $S_{22}$ for the plate with circular inclusion.}
+    \label{fig:stressFields}
+\end{figure}
 
 \subsection*{Q4: Comparison Analysis at Point A}
-XXX…
+To calculate the von Misses equivalent stress and equivalent plastic strain at point A analytically, 
+we can use following equations:
+\begin{equation}
+    \sigma_{eq, hill} = \sqrt{
+        F(\sigma_{22}-\sigma_{33})^2 + 
+        G(\sigma_{33}-\sigma_{11})^2 + 
+        H(\sigma_{11}-\sigma_{22})^2 + 
+        2L\sigma_{23}^2 + 
+        2M\sigma_{31}^2 + 
+        2N\sigma_{12}^2
+    }
+    \label{eq:hill_yield}
+\end{equation}
 
+\begin{equation}
+    \varepsilon_{eq} = \sqrt{\frac{F\varepsilon_{pl,11}^2 + G\varepsilon_{pl,22}^2 + H\varepsilon_{pl,33}^2}{FG+FH+GH} + \frac{2\varepsilon_{pl,12}^2}{N}}
+    \label{eq:equivalent_plastic_strain}
+\end{equation}
+
+where $\varepsilon_{pl,33}=-(\varepsilon_{pl,11}+\varepsilon_{pl,22})$. Hence all of the constant in the equations
+are described using $R_{ij}$, where these variable describe the ratio of plasticity between the preceeding directions and the based
+yield stress:
+
+\begin{align*}
+F &= \frac{1}{2} \left[ \frac{1}{(R_{22})^2} + \frac{1}{(R_{33})^2} - \frac{1}{(R_{11})^2} \right] \\
+G &= \frac{1}{2} \left[ \frac{1}{(R_{33})^2} + \frac{1}{(R_{11})^2} - \frac{1}{(R_{22})^2} \right] \\
+H &= \frac{1}{2} \left[ \frac{1}{(R_{11})^2} + \frac{1}{(R_{22})^2} - \frac{1}{(R_{33})^2} \right] \\
+L &= \frac{3}{2(R_{23})^2} \\
+M &= \frac{3}{2(R_{31})^2} \\
+N &= \frac{3}{2(R_{12})^2}
+\end{align*}
+
+At point A, since it use material A and it is an isotropic material, 
+therefore we can assume all of the $R_{ij}$ are equal to 1. Therefore, the hill's
+equivalent stress and strain can be simplified as follows:
+\begin{equation}
+    \sigma_{eq, hill} = \sqrt{\frac{1}{2}((\sigma_{22}-\sigma_{33})^2 + (\sigma_{33}-\sigma_{11})^2 + (\sigma_{11}-\sigma_{22})^2 + 6\sigma_{23}^2 + 6\sigma_{31}^2 + 6\sigma_{12}^2)}
+\end{equation}
+\begin{equation}
+    \varepsilon_{eq} = \sqrt{\frac{2(\varepsilon_{pl,11}^2 + \varepsilon_{pl,22}^2 + \varepsilon_{pl,33}^2)}{3} + \frac{\varepsilon_{pl,12}^2}{3}}
+\end{equation}
+Before we can calculate the hill's equivalent stress and strain,
+we need to define the stress components at point A by determining from its strain.
+\begin{equation}
+    \varepsilon_{22}^{pl} = \varepsilon - \varepsilon_{el} = \frac{\Delta u_{2}}{l} - \frac{\sigma^y}{E_{2}} = \frac{5 \;\text{mm}}{20 \;\text{mm}} - \frac{360 \;\text{MPa}}{240 \;\text{GPa}} = 0.25 - 0.0015 = 0.2485
+\end{equation}
+
+Then we can start to calculate the stress components in y direction by taking account the hardening
+constant.
+\begin{equation}
+    \sigma_{22} = \sigma_{y} + H\varepsilon_{22}^{pl} =  360  + \frac{550-360}{0.4} \cdot 0.2485 = 478.0375 \;\text{MPa}
+\end{equation}
+Since the stress component is only at one direction, therefore we can simplified the von Misses equivalent stress
+and equivalent plastic strain as follows:
+\begin{equation}
+    \sigma_{eq, hill} = \sqrt{\frac{1}{2}((\sigma_{22}-0)^2 +  (0-\sigma_{22})^2)} = \sqrt{\frac{1}{2}(\sigma_{22}^2 + \sigma_{22}^2)} = 478.0375 \;\text{MPa}
+\end{equation}
+
+\begin{equation}
+    \varepsilon_{eq} = \sqrt{\frac{2(\varepsilon_{pl,22}^2 + 0 + \varepsilon_{pl,22}^2)}{3}} = \sqrt{\frac{4(0.2485)^2}{3}} = 0.2869
+\end{equation}
+
+Therefore, we obtain the Hill's equivalent stress 478.04 MPa and the equivalent strain of
+0.2869 at point A. From the simulation results, the equivalent von Mises stress at point A
+is $\sigma_{A} = 473.48 \text{MPa}$, while the equivalent plastic strain (PEEQ) is 
+$\varepsilon_{A} = 0.24$. 
+
+
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/MISES_Coarse.png}
+        \caption*{(a) $\sigma_{vM}$ for coarse mesh}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/MISES_Fine.png}
+        \caption*{(b) $\sigma_{vM}$ for fine mesh}
+    \end{minipage}
+    \vspace{1em}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/PEEQ_Coarse.png}
+        \caption*{(c) $\varepsilon_{vM}$ for coarse mesh}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/PEEQ_Fine.png}
+        \caption*{(d) $\varepsilon_{vM}$ for fine mesh}
+    \end{minipage}
+    \caption{Comparison of von misses stress and equivalent plastic strain distribution 
+    for coarse (a, c) and fine (b, d) mesh 
+    sizes.}
+    \label{fig:stressFields}
+\end{figure}
 \subsection*{Q5: Comparison Analysis at Point B}
-XXX…
+Using equation~\ref{eq:hill_yield} and~\ref{eq:equivalent_plastic_strain}, we can calculate the Hill's equivalent stress and 
+equivalent plastic strain at point B analytically. Before calculating the stress and strain, 
+we need to define the plastic flow stress components at point B. Since the displacement only applied for 
+the y direction (which here is in direction 2), 
+the plastic flow stress component can be defined as follows:
+\begin{equation}
+    \sigma_{22} = \sigma_{y} + \sigma_{22}^{pl} = \sigma_{y} + H\varepsilon_{22}^{pl}
+    \label{eq:Q5}
+\end{equation}
+Where $H$ is the hardening modulus, $\sigma^y$ is the yield stress, and $\varepsilon_{22}^{pl}$ is the plastic strain in the direction of 2.
+Hence, we need to elaborate the unknown variables in the equations, starting form the plastic strain:
+\begin{equation}
+    \varepsilon_{22}^{pl} = \varepsilon - \varepsilon_{el} = \frac{\Delta u_{2}}{l} - \frac{\sigma^y}{E_{2}} = \frac{5 \;\text{mm}}{20 \;\text{mm}} - \frac{280 \;\text{MPa}}{220 \;\text{GPa}} = 0.25 - 0.00127 = 0.24873
+\end{equation}
+Then we can calculate the hardening modulus $H$ using the following equation:
+\begin{equation}
+    H = \frac{\sigma_{f} - \sigma_{y}}{\varepsilon_{f}^{b} - \varepsilon_{y}^{b}} = \frac{450 \;\text{MPa} - 280 \;\text{MPa}}{0.5 - 0} = 340 \;\text{MPa}
+\end{equation}  
+then we can calculate the plastic flow stress component in equation~\ref{eq:Q5}:
+\begin{equation}
+    \sigma_{22} = 280 \;\text{MPa} + 340 \;\text{MPa} \cdot 0.24873 = 280 \;\text{MPa} + 84.5682 \;\text{MPa} = 364.57 \;\text{MPa}  
+\end{equation}
 
+Now we can calculate the Hill's equivalent stress at point B using equation~\ref{eq:hill_yield}. Since we only use the $\sigma_{22}$ component, we can
+reduce some terms in the equation and simplify it as follows:
+\begin{equation}
+    \sigma_{eq, hill} = \sqrt{F(\sigma_{22}-\sigma_{33})^2 + H(\sigma_{11}-\sigma_{22})^2}
+\end{equation}
+For F and H, we can use the values from the material B properties
+\begin{align*}
+F &= \frac{1}{2} \left[ \frac{1}{(R_{22})^2} + \frac{1}{(R_{33})^2} - \frac{1}{(R_{11})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1.2)^2} + \frac{1}{(1.25)^2} - \frac{1}{(1)^2} \right] = 0.1672\\
+H &= \frac{1}{2} \left[ \frac{1}{(R_{11})^2} + \frac{1}{(R_{22})^2} - \frac{1}{(R_{33})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1)^2} + \frac{1}{(1.2)^2} - \frac{1}{(1.25)^2} \right] = 0.5277
+\end{align*}    
+
+Therefore, we can calculate the Hill's equivalent stress at point B as follows:
+
+\begin{equation}
+    \sigma_{eq, hill} = \sqrt{0.1672(364.57-0)^2 + 0.5277(0-364.57)^2} = 303.91 \;\text{MPa}
+\end{equation} 
+Next, we can calculate the hill's equivalent plastic strain at point B using equation~\ref{eq:equivalent_plastic_strain}
+and eliminate some terms, which will produce equation as follows:
+\begin{equation}
+    \varepsilon_{eq} = \sqrt{\frac{ G\varepsilon_{pl,22}^2}{FG+FH+GH}}
+\end{equation}
+
+Hence, we can calculate additionally the $G$ constant using the material B properties:
+\begin{align*}
+G &= \frac{1}{2} \left[ \frac{1}{(R_{33})^2} + \frac{1}{(R_{11})^2} - \frac{1}{(R_{22})^2} \right] = \frac{1}{2} \left[ \frac{1}{(1.25)^2} + \frac{1}{(1)^2} - \frac{1}{(1.2)^2} \right] = 0.4728
+\end{align*}
+
+Finally, we can calculate the hill's equivalent plastic strain at point B as follows:
+\begin{equation}
+    \varepsilon_{eq} = \sqrt{\frac{0.4728(0.24873)^2}{0.1672 \cdot 0.4728 + 0.5277 \cdot 0.4728 + 0.1672 \cdot 0.5277}} = 0.2649
+\end{equation}
 \subsection*{Extra Task}
 To calculate $\frac{\partial{f}}{\partial{\sigma}}$ with Voigt notation tensor $\sigma = (\sigma_1, \sigma_2, \sigma_3, \sigma_4, \sigma_5, \sigma_6)$ from yield function 
 $f(\sigma)=\sigma_{eq} - \sigma_y$, where $\sigma_{eq}$ can be described as follows:
 
 \begin{equation}
-\sigma_{eq} = \sqrt{\frac{1}{2} \left( (\sigma_1 - \sigma_2)^2 + (\sigma_2 - \sigma_3)^2 + (\sigma_3 - \sigma_1)^2 + 6(\sigma_4^2 + \sigma_5^2 + \sigma_6^2) \right)}
+    \sigma_{eq} = \sqrt{\frac{1}{2} \left( H_{1}(\sigma_1 - \sigma_2)^2 + H_{2}(\sigma_2 - \sigma_3)^2 + H_{3}(\sigma_3 - \sigma_1)^2 + 6H_{4}\sigma_4^2 + 6H_{5}\sigma_5^2 + 6H_{6}\sigma_6^2 \right)}
 \end{equation}
 
 Hence, we can simplify the prescribed equation to:
@@ -219,7 +435,7 @@ f(\sigma) = \sqrt{A} - \sigma_y \rightarrow \frac{\partial{f}}{\partial{\sigma}}
 Since we defined $A$ as a substituent of the equivalent stress $\sigma_{eq}$, we can revert the equation as in the origin form:
 
 \begin{equation}
-    \frac{\partial{f}}{\partial{\sigma}} = \frac{1}{\sigma_{eq}} \cdot \frac{\partial{A}}{\partial{\sigma}}
+    \frac{\partial{f}}{\partial{\sigma}} = \frac{1}{2\sigma_{eq}} \cdot \frac{\partial{A}}{\partial{\sigma}}
 \end{equation}
 
 Now we need to expand the tensor differential with respect to each stress component in 
@@ -247,7 +463,7 @@ component and assemble them to a Voigt notation as following sequence:
 
 To summarize the above equations, we can write them in a matrix form as follows:
 \begin{equation}
-\frac{\partial{f}}{\partial{\sigma}} = \frac{1}{\sigma_{eq}}\begin{bmatrix}
+\frac{\partial{f}}{\partial{\sigma}} = \frac{1}{2\sigma_{eq}}\begin{bmatrix}
 H_{1}(\sigma_1-\sigma_2) + H_3(\sigma_1-\sigma_3) \\    
 H_{2}(\sigma_2-\sigma_3) + H_1(\sigma_2-\sigma_1) \\
 H_{2}(\sigma_3-\sigma_2) + H_3(\sigma_3-\sigma_1) \\
@@ -262,8 +478,6 @@ H_{2}(\sigma_3-\sigma_2) + H_3(\sigma_3-\sigma_1) \\
 
 \section*{Conclusion}
 (Summarize your findings and state key takeaways from the analysis)
-
-
 
 \end{document}
 
