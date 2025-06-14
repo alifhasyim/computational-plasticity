@@ -59,15 +59,15 @@ boundary condition and settings.
         \centering
             \includegraphics[width=0.5\textwidth]{images/TaskQ1.png}
         \caption{Baseline plate geometry with defined material A. Two boundary conditions are applied, which are the 
-        fixed support restriction in y direction on the bottom line of the plate, fixed support point on the bottom right point,
-        and constant distribution of displacement in y direction on the top line of the plate, which has value of 5 mm.}
+        fixed support restriction in y direction on the bottom line of the plate, fixed support point on the bottom right point restriction to 
+        x direction, and constant distribution of displacement in y positive direction on the top line of the plate, which has value of 5 mm.}
         \label{fig:geometryQ1}
 \end{figure}
 
     \item \textbf{Plate with Circular Inclusion:} Same as the baseline plate, but with a circular inclusion of radius $r=4$ mm located at the center or specified position.
 \begin{figure}[H]
         \centering
-            \includegraphics[width=0.52\textwidth]{images/TaskQ2.png}
+            \includegraphics[width=0.5\textwidth]{images/TaskQ2.png}
         \caption{Plate with circular inclusion and defined material B. Boundary conditions are the same as in Task 1 shown in Figure~\ref{fig:geometryQ1}.}
         \label{fig:geometryQ2}
 \end{figure}
@@ -183,7 +183,7 @@ region, the yield transition, and the strain hardening stage.}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{visualize_tensileGraph/res/comparison_direct_calculated_modified.png}
+    \includegraphics[width=1\textwidth]{visualize_tensileGraph/res/comparison_direct_calculated.png}
     \caption{Comparison of the stress-strain curves obtained from the force-displacement method and the direct stress-strain calculation 
     for the plane stress condition. The direct stress-strain curve is obtained by extracting the stress $\sigma_{22}$ 
     and strain $\varepsilon_{22}$ directly from the history output, which includes all nodes along the top edges of the baseplate. 
@@ -203,12 +203,27 @@ This difference occurs because, in the direct stress-strain extraction method, t
 by taking account geometric changes such as the cross-sectional area reduction. In the plastic flow
 region, the geometry undergoes necking, which decreases the cross-sectional area and leads to higher 
 stress values. This extracted value is often called the true stress-strain diagram, as it uses the logarithmic 
-strain and accounts for the reduction in cross-sectional area.
+strain and accounts for the reduction in cross-sectional area. Therefore, using this method will enable us to see the hardening
+region during the plastic flow process.
 
 \hspace{2em}In the calculated from force-displacement method, the stress obtained by calculating the total force produced in the top nodal line of the baseplate divided by a constant area value, which here
 the stresses are most likely does not increase in the plastic region, since it use the original cross-sectional area as the dominator. This method also applied to calculate the strain, which only
-divide the displacement with the original length of the baseplate. This method is often use to create the engineering stress-strain curve. In the experimental tensile test, 
-this method oftenly used to obtain the stress-strain curve, since the obtained test data is only force and displacement of the extensiometer. 
+divide the displacement with the original length of the baseplate. This method is often used to create the engineering stress-strain curve. In the experimental tensile test, 
+this method is often used to obtain the stress-strain curve, 
+since the obtained test data is only force and displacement of the extensometer. 
+
+\hspace{2em}To distinguish the critical event point, on figure~\ref{fig:distinguishImportantRegion} is the detailed description of the critical
+events during the loading of the axial load in the top side of the plate. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{visualize_tensileGraph/res/comparison_direct_calculated_modified.png}
+    \caption{Annotation of the elastic region, yield stress transition, and the strain hardening stage figure. From point 1-2 is the elastic region, whereas 
+    at point 2 it starts to yield transitioning to become plastic state. From point 2-3 is the strain hardening stage, as the material continuously plastically
+    deformed until its fracture in point 3.}
+    \label{fig:distinguishImportantRegion}
+\end{figure}
+
 
 \vspace{1em}
 \textit{$\dots$ Set up the same model under plane strain conditions. Plot the stress-strain curve obtained from
@@ -228,8 +243,8 @@ the mechanical behavior of the model.}
 \vspace{1em}
 
 \hspace{2em}Based on Figure~\ref{fig:ComparisonDirectCalculated}, the stress-strain curves for both plane stress and plane strain 
-conditions show similar behavior in terms of producing young modulus, 
-whereas the plane strain condition exhibiting a slightly higher yield stress.
+conditions show similar behavior in terms of producing young modulus, as well as the fracture stress.
+Whereas the plane strain condition exhibiting a slightly higher yield stress.
 This is expected, as the plane strain condition restricts deformation in the thickness direction, 
 leading to higher stress values. This stress produced from the strain restriction in the thickness direction,
 which will lead to produce additional stress component that will increase the overall stress generation. Therefore, choosing the 

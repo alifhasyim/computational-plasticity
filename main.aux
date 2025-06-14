@@ -2,7 +2,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Set up of the Model}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Geometry and Boundary Conditions}{2}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Baseline plate geometry with defined material A. Two boundary conditions are applied, which are the fixed support restriction in y direction on the bottom line of the plate, fixed support point on the bottom right point, and constant distribution of displacement in y direction on the top line of the plate, which has value of 5 mm.}}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Baseline plate geometry with defined material A. Two boundary conditions are applied, which are the fixed support restriction in y direction on the bottom line of the plate, fixed support point on the bottom right point restriction to x direction, and constant distribution of displacement in y positive direction on the top line of the plate, which has value of 5 mm.}}{2}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:geometryQ1}{{1}{2}{Geometry and Boundary Conditions}{figure.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Plate with circular inclusion and defined material B. Boundary conditions are the same as in Task 1 shown in Figure~\ref {fig:geometryQ1}.}}{2}{}\protected@file@percent }
@@ -23,18 +23,20 @@
 \newlabel{fig:MeshQ2.2}{{5}{4}{Meshing}{figure.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparison of the stress-strain curves obtained from the force-displacement method and the direct stress-strain calculation for the plane stress condition. The direct stress-strain curve is obtained by extracting the stress $\sigma _{22}$ and strain $\varepsilon _{22}$ directly from the history output, which includes all nodes along the top edges of the baseplate. The calculated force-displacement data is obtained by extracting the force $F_{22}$ and displacement $U_{22}$ from the history output, which also includes all nodes along the top edges of the baseplate. Then, the stress is obtained by dividing the force by the surface area normal to the loading direction, which is $A=20 \tmspace  +\thickmuskip {.2777em} \text  {mm}^2$. The strain is calculated by taking the displacement and dividing it by the baseplate's original length, which is $L=20 \tmspace  +\thickmuskip {.2777em} \text  {mm}$, in the direction of loading.}}{5}{}\protected@file@percent }
 \newlabel{fig:ComparisonDirectCalculated}{{6}{5}{}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comparison of plane stress and plane strain conditions for the baseline plate with material A. The setting for plane stress and strain are distinguised by changing the type of meshing in Abaqus based on the condition.}}{6}{}\protected@file@percent }
-\newlabel{fig:ComparisonDirectCalculated}{{7}{6}{}{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparison of the stress-strain curves for the homogeneous baseplate and plate with circular inclusion. Plate with inclusion produced yield and fracture stress of $353.805 \tmspace  +\thickmuskip {.2777em} \text  {MPa}$ and $370.276\tmspace  +\thickmuskip {.2777em} \text  {MPa}$, while plate with inclusion has $359.574\tmspace  +\thickmuskip {.2777em} \text  {MPa}$ and $372.058\tmspace  +\thickmuskip {.2777em} \text  {MPa}$, respectively.}}{8}{}\protected@file@percent }
-\newlabel{fig:ComparisonInclusion}{{8}{8}{}{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Contour plots of (a) von Mises stress, (b) $S_{11}$, (c) $S_{12}$, and (d) $S_{22}$ for the plate with circular inclusion. Noted that all the used unit for this plot is MPa for stress unit.}}{10}{}\protected@file@percent }
-\newlabel{fig:stressFieldsall}{{9}{10}{}{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Annotation of the elastic region, yield stress transition, and the strain hardening stage figure. From point 1-2 is the elastic region, whereas at point 2 it starts to yield transitioning to become plastic state. From point 2-3 is the strain hardening stage, as the material continuously plastically deformed until its fracture in point 3.}}{6}{}\protected@file@percent }
+\newlabel{fig:distinguishImportantRegion}{{7}{6}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparison of plane stress and plane strain conditions for the baseline plate with material A. The setting for plane stress and strain are distinguised by changing the type of meshing in Abaqus based on the condition.}}{7}{}\protected@file@percent }
+\newlabel{fig:ComparisonDirectCalculated}{{8}{7}{}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comparison of the stress-strain curves for the homogeneous baseplate and plate with circular inclusion. Plate with inclusion produced yield and fracture stress of $353.805 \tmspace  +\thickmuskip {.2777em} \text  {MPa}$ and $370.276\tmspace  +\thickmuskip {.2777em} \text  {MPa}$, while plate with inclusion has $359.574\tmspace  +\thickmuskip {.2777em} \text  {MPa}$ and $372.058\tmspace  +\thickmuskip {.2777em} \text  {MPa}$, respectively.}}{8}{}\protected@file@percent }
+\newlabel{fig:ComparisonInclusion}{{9}{8}{}{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Contour plots of (a) von Mises stress, (b) $S_{11}$, (c) $S_{12}$, and (d) $S_{22}$ for the plate with circular inclusion. Noted that all the used unit for this plot is MPa for stress unit.}}{10}{}\protected@file@percent }
+\newlabel{fig:stressFieldsall}{{10}{10}{}{figure.10}{}}
 \newlabel{eq:hill_yield}{{1}{12}{}{equation.1}{}}
 \newlabel{eq:equivalent_plastic_strain}{{2}{12}{}{equation.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Extracted stress and strain components at point A from Abaqus.}}{13}{}\protected@file@percent }
 \newlabel{tab:pointA-results}{{4}{13}{}{table.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Comparison of von Mises stress and equivalent plastic strain distribution for coarse (a, c) and fine (b, d) mesh sizes for 1536 and 6144 nodes, respectively. Noted that all the used unit for von Mises stress plot is MPa for stress unit and mm/mm for strain unit.}}{14}{}\protected@file@percent }
-\newlabel{fig:stressFields}{{10}{14}{}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Comparison of von Mises stress and equivalent plastic strain distribution for coarse (a, c) and fine (b, d) mesh sizes for 1536 and 6144 nodes, respectively. Noted that all the used unit for von Mises stress plot is MPa for stress unit and mm/mm for strain unit.}}{14}{}\protected@file@percent }
+\newlabel{fig:stressFields}{{11}{14}{}{figure.11}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Extracted stress and strain components at point B from Abaqus.}}{15}{}\protected@file@percent }
 \newlabel{tab:pointA-results}{{5}{15}{}{table.5}{}}
 \gdef \@abspage@last{17}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.25)  14 JUN 2025 17:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.25)  14 JUN 2025 18:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -301,7 +301,7 @@ Package pdftex.def Info: images/TaskQ1.png  used on input line 60.
 File: images/TaskQ2.png Graphic file (type png)
 <use images/TaskQ2.png>
 Package pdftex.def Info: images/TaskQ2.png  used on input line 70.
-(pdftex.def)             Requested size: 244.27461pt x 207.75166pt.
+(pdftex.def)             Requested size: 234.8775pt x 199.76215pt.
 
 
 [2 <./images/TaskQ1.png> <./images/TaskQ2.png>]
@@ -330,53 +330,59 @@ Package pdftex.def Info: images/MeshQ2.2.png  used on input line 167.
 
 
 [4 <./images/MeshQ1.png> <./images/MeshQ2.1.png> <./images/MeshQ2.2.png>]
-<visualize_tensileGraph/res/comparison_direct_calculated_modified.png, id=33, 546.3612pt x 364.2408pt>
-File: visualize_tensileGraph/res/comparison_direct_calculated_modified.png Graphic file (type png)
-<use visualize_tensileGraph/res/comparison_direct_calculated_modified.png>
-Package pdftex.def Info: visualize_tensileGraph/res/comparison_direct_calculated_modified.png  used on input line 186.
-(pdftex.def)             Requested size: 469.75502pt x 313.17429pt.
-
-
-[5 <./visualize_tensileGraph/res/comparison_direct_calculated_modified.png>]
-<visualize_tensileGraph/res/comparison_planeStress_planeStrain.png, id=39, 867.24pt x 578.16pt>
-File: visualize_tensileGraph/res/comparison_planeStress_planeStrain.png Graphic file (type png)
-<use visualize_tensileGraph/res/comparison_planeStress_planeStrain.png>
-Package pdftex.def Info: visualize_tensileGraph/res/comparison_planeStress_planeStrain.png  used on input line 219.
+<visualize_tensileGraph/res/comparison_direct_calculated.png, id=33, 867.24pt x 578.16pt>
+File: visualize_tensileGraph/res/comparison_direct_calculated.png Graphic file (type png)
+<use visualize_tensileGraph/res/comparison_direct_calculated.png>
+Package pdftex.def Info: visualize_tensileGraph/res/comparison_direct_calculated.png  used on input line 186.
 (pdftex.def)             Requested size: 469.75502pt x 313.17216pt.
 
 
-[6 <./visualize_tensileGraph/res/comparison_planeStress_planeStrain.png>]
+[5 <./visualize_tensileGraph/res/comparison_direct_calculated.png>]
+<visualize_tensileGraph/res/comparison_direct_calculated_modified.png, id=39, 476.982pt x 344.0052pt>
+File: visualize_tensileGraph/res/comparison_direct_calculated_modified.png Graphic file (type png)
+<use visualize_tensileGraph/res/comparison_direct_calculated_modified.png>
+Package pdftex.def Info: visualize_tensileGraph/res/comparison_direct_calculated_modified.png  used on input line 220.
+(pdftex.def)             Requested size: 399.29463pt x 287.9808pt.
 
-[7]
-<visualize_tensileGraph/res/comparison_inclusion_non.png, id=48, 867.24pt x 578.16pt>
+
+[6 <./visualize_tensileGraph/res/comparison_direct_calculated_modified.png>]
+<visualize_tensileGraph/res/comparison_planeStress_planeStrain.png, id=44, 867.24pt x 578.16pt>
+File: visualize_tensileGraph/res/comparison_planeStress_planeStrain.png Graphic file (type png)
+<use visualize_tensileGraph/res/comparison_planeStress_planeStrain.png>
+Package pdftex.def Info: visualize_tensileGraph/res/comparison_planeStress_planeStrain.png  used on input line 234.
+(pdftex.def)             Requested size: 469.75502pt x 313.17216pt.
+
+
+[7 <./visualize_tensileGraph/res/comparison_planeStress_planeStrain.png>]
+<visualize_tensileGraph/res/comparison_inclusion_non.png, id=50, 867.24pt x 578.16pt>
 File: visualize_tensileGraph/res/comparison_inclusion_non.png Graphic file (type png)
 <use visualize_tensileGraph/res/comparison_inclusion_non.png>
-Package pdftex.def Info: visualize_tensileGraph/res/comparison_inclusion_non.png  used on input line 250.
+Package pdftex.def Info: visualize_tensileGraph/res/comparison_inclusion_non.png  used on input line 265.
 (pdftex.def)             Requested size: 469.75502pt x 313.17216pt.
 
 
 [8 <./visualize_tensileGraph/res/comparison_inclusion_non.png>]
 
 [9]
-<images/MISES.png, id=56, 473.3685pt x 292.6935pt>
+<images/MISES.png, id=58, 473.3685pt x 292.6935pt>
 File: images/MISES.png Graphic file (type png)
 <use images/MISES.png>
-Package pdftex.def Info: images/MISES.png  used on input line 301.
+Package pdftex.def Info: images/MISES.png  used on input line 316.
 (pdftex.def)             Requested size: 225.4804pt x 139.4194pt.
-<images/S11.png, id=57, 473.97075pt x 290.2845pt>
+<images/S11.png, id=59, 473.97075pt x 290.2845pt>
 File: images/S11.png Graphic file (type png)
 <use images/S11.png>
-Package pdftex.def Info: images/S11.png  used on input line 307.
+Package pdftex.def Info: images/S11.png  used on input line 322.
 (pdftex.def)             Requested size: 225.4804pt x 138.09474pt.
-<images/S12.png, id=58, 473.97075pt x 292.09125pt>
+<images/S12.png, id=60, 473.97075pt x 292.09125pt>
 File: images/S12.png Graphic file (type png)
 <use images/S12.png>
-Package pdftex.def Info: images/S12.png  used on input line 313.
+Package pdftex.def Info: images/S12.png  used on input line 328.
 (pdftex.def)             Requested size: 225.4804pt x 138.95424pt.
-<images/S22.png, id=59, 471.56175pt x 290.88675pt>
+<images/S22.png, id=61, 471.56175pt x 290.88675pt>
 File: images/S22.png Graphic file (type png)
 <use images/S22.png>
-Package pdftex.def Info: images/S22.png  used on input line 319.
+Package pdftex.def Info: images/S22.png  used on input line 334.
 (pdftex.def)             Requested size: 225.4804pt x 139.09142pt.
 
 
@@ -385,25 +391,25 @@ Package pdftex.def Info: images/S22.png  used on input line 319.
 [11]
 
 [12]
-<images/MISES_Coarse.png, id=74, 473.3685pt x 292.6935pt>
+<images/MISES_Coarse.png, id=76, 473.3685pt x 292.6935pt>
 File: images/MISES_Coarse.png Graphic file (type png)
 <use images/MISES_Coarse.png>
-Package pdftex.def Info: images/MISES_Coarse.png  used on input line 456.
+Package pdftex.def Info: images/MISES_Coarse.png  used on input line 471.
 (pdftex.def)             Requested size: 225.4804pt x 139.4194pt.
-<images/MISES_Fine.png, id=75, 473.97075pt x 293.898pt>
+<images/MISES_Fine.png, id=77, 473.97075pt x 293.898pt>
 File: images/MISES_Fine.png Graphic file (type png)
 <use images/MISES_Fine.png>
-Package pdftex.def Info: images/MISES_Fine.png  used on input line 462.
+Package pdftex.def Info: images/MISES_Fine.png  used on input line 477.
 (pdftex.def)             Requested size: 225.4804pt x 139.81375pt.
-<images/PEEQ_Coarse.png, id=76, 473.3685pt x 290.88675pt>
+<images/PEEQ_Coarse.png, id=78, 473.3685pt x 290.88675pt>
 File: images/PEEQ_Coarse.png Graphic file (type png)
 <use images/PEEQ_Coarse.png>
-Package pdftex.def Info: images/PEEQ_Coarse.png  used on input line 468.
+Package pdftex.def Info: images/PEEQ_Coarse.png  used on input line 483.
 (pdftex.def)             Requested size: 225.4804pt x 138.55879pt.
-<images/PEEQ_Fine.png, id=77, 470.9595pt x 293.29575pt>
+<images/PEEQ_Fine.png, id=79, 470.9595pt x 293.29575pt>
 File: images/PEEQ_Fine.png Graphic file (type png)
 <use images/PEEQ_Fine.png>
-Package pdftex.def Info: images/PEEQ_Fine.png  used on input line 474.
+Package pdftex.def Info: images/PEEQ_Fine.png  used on input line 489.
 (pdftex.def)             Requested size: 225.4804pt x 140.41785pt.
 
 
@@ -426,17 +432,17 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4724 strings out of 469923
- 82380 string characters out of 5462358
- 473082 words of memory out of 5000000
- 31523 multiletter control sequences out of 15000+600000
+ 4732 strings out of 469923
+ 82873 string characters out of 5462358
+ 473106 words of memory out of 5000000
+ 31531 multiletter control sequences out of 15000+600000
  633802 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,65p,1224b,413s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Bagus Alifah Hasyim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Bagus Alifah Hasyim/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (17 pages, 2293910 bytes).
+Output written on main.pdf (17 pages, 2348096 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
+ 142 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
